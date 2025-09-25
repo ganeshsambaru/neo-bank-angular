@@ -9,8 +9,8 @@
       <p class="card-text"><strong>Email:</strong> {{ customer.email }}</p>
       <p class="card-text"><strong>Phone:</strong> {{ customer.phone }}</p>
       <p class="card-text"><strong>Address:</strong> {{ customer.address }}</p>
-      <a [routerLink]="['/customers/edit', customer.id]" class="btn btn-warning me-2">Edit</a>
-      <button class="btn btn-secondary" (click)="backToList()">Back</button>
+      <button class="btn btn-secondary me-2" (click)="backToList()">Back</button>
+      <a [routerLink]="['/customers/edit', customer.id]" class="btn btn-warning ">Edit</a>
     </div>
   </div>
 </div>

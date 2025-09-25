@@ -8,23 +8,42 @@
   <form [formGroup]="form" (ngSubmit)="submit()" class="row g-3">
     <div class="col-md-6">
       <label class="form-label">Full Name</label>
-      <input class="form-control" formControlName="fullName">
+      <input class="form-control" formControlName="fullName" />
+      <div *ngIf="f['fullName'].touched && f['fullName'].invalid" class="text-danger">
+        Full Name is required
+      </div>
     </div>
+
     <div class="col-md-6">
       <label class="form-label">Email</label>
-      <input class="form-control" formControlName="email">
+      <input class="form-control" formControlName="email" />
+      <div *ngIf="f['email'].touched && f['email'].errors" class="text-danger">
+        <span *ngIf="f['email'].errors?.['required']">Email is required</span>
+        <span *ngIf="f['email'].errors?.['email']">Invalid email</span>
+      </div>
     </div>
+
     <div class="col-md-6">
       <label class="form-label">Phone</label>
-      <input class="form-control" formControlName="phone">
+      <input class="form-control" formControlName="phone" />
+      <div *ngIf="f['phone'].touched && f['phone'].invalid" class="text-danger">
+        Phone is required
+      </div>
     </div>
+
     <div class="col-md-6">
       <label class="form-label">Address</label>
-      <input class="form-control" formControlName="address">
+      <input class="form-control" formControlName="address" />
+      <div *ngIf="f['address'].touched && f['address'].invalid" class="text-danger">
+        Address is required
+      </div>
     </div>
+
     <div class="col-12">
-      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
-       <a routerLink="/customers" class="btn btn-secondary ms-2">Cancel</a>
+      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
+        Save
+      </button>
+      <a routerLink="/customers" class="btn btn-secondary ms-2">Cancel</a>
     </div>
   </form>
 </div>
