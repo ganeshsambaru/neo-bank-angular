@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Customer Details</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <div *ngIf="customer" class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ customer.fullName }}</h5>
+      <p class="card-text"><strong>Email:</strong> {{ customer.email }}</p>
+      <p class="card-text"><strong>Phone:</strong> {{ customer.phone }}</p>
+      <p class="card-text"><strong>Address:</strong> {{ customer.address }}</p>
+      <a [routerLink]="['/customers/edit', customer.id]" class="btn btn-warning me-2">Edit</a>
+      <button class="btn btn-secondary" (click)="backToList()">Back</button>
+    </div>
+  </div>
+</div>

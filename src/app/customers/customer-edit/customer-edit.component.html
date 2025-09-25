@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Edit Customer</h2>
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="row g-3">
+    <!-- same fields as add -->
+    <div class="col-md-6">
+      <label class="form-label">Full Name</label>
+      <input class="form-control" formControlName="fullName">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Email</label>
+      <input class="form-control" formControlName="email">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Phone</label>
+      <input class="form-control" formControlName="phone">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Address</label>
+      <input class="form-control" formControlName="address">
+    </div>
+    <div class="col-12">
+      <button type="submit" [disabled]="form.invalid" class="btn btn-success">Update</button>
+      <a routerLink="/customers" class="btn btn-secondary ms-2">Cancel</a>
+    </div>
+  </form>
+</div>

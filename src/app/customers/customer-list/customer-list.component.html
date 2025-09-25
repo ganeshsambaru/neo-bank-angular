@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Customers</h2>
+
+  <!-- Alerts -->
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of customers">
+        <td>{{ c.fullName }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.phone }}</td>
+        <td>{{ c.address }}</td>
+        <td>
+  <a [routerLink]="['/customers/details', c.id]" class="btn btn-sm btn-info me-2">Details</a>
+  <a [routerLink]="['/customers/edit', c.id]" class="btn btn-sm btn-warning me-2">Edit</a>
+  <button class="btn btn-sm btn-danger" (click)="deleteCustomer(c.id!)">Delete</button>
+</td>
+
+
+      </tr>
+    </tbody>
+  </table>
+</div>
