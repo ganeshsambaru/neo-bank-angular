@@ -23,29 +23,38 @@ export class CustomerEditComponent implements OnInit {
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
+    // build form with validators
     this.form = this.fb.group({
-      fullName: ['', Validators.required],
+      fullName: ['', [Validators.required, Validators.maxLength(100)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: [''],
-      address: ['']
+      phone: ['', [Validators.required]],
+      address: ['', [Validators.required, Validators.maxLength(200)]]
     });
 
-    // Load customer data
+    // load existing customer
     this.customerService.getCustomer(this.id).subscribe({
       next: c => this.form.patchValue(c),
       error: () => this.errorMessage = 'Failed to load customer.'
     });
   }
 
+  get f() {
+    return this.form.controls;
+  }
+
   submit() {
-    if (this.form.valid) {
-      this.customerService.updateCustomer(this.id, this.form.value).subscribe({
-        next: () => {
-          this.successMessage = 'Customer updated successfully!';
-          this.router.navigate(['/customers']);
-        },
-        error: () => this.errorMessage = 'Failed to update customer.'
-      });
+    if (this.form.invalid) {
+      // show validation errors
+      this.form.markAllAsTouched();
+      return;
     }
+
+    this.customerService.updateCustomer(this.id, this.form.value).subscribe({
+      next: () => {
+        this.successMessage = 'Customer updated successfully!';
+        this.router.navigate(['/customers']);
+      },
+      error: () => this.errorMessage = 'Failed to update customer.'
+    });
   }
 }

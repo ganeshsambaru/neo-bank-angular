@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <!-- Heading + button aligned properly -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Accounts</h2>
+    <a routerLink="/accounts/add" class="btn btn-primary">Add Account</a>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Account Number</th>
+        <th>Type</th>
+        <th>Balance</th>
+        <th>Customer Id</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let acc of accounts">
+        <td>{{ acc.accountNumber }}</td>
+        <td>{{ acc.accountType }}</td>
+        <td>{{ acc.balance | currency }}</td>
+        <td>{{ acc.customerId }}</td>
+        <td>
+          <button class="btn btn-sm btn-info me-2" (click)="viewAccount(acc.id!)">Details</button>
+          <button class="btn btn-sm btn-warning me-2" (click)="editAccount(acc.id!)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteAccount(acc.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

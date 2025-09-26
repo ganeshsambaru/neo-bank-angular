@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Add Account</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">Account Number</label>
+      <input class="form-control" formControlName="accountNumber">
+      <div *ngIf="form.get('accountNumber')?.touched && form.get('accountNumber')?.invalid" class="text-danger">
+        Account number is required (4–50 chars)
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Account Type</label>
+      <input class="form-control" formControlName="accountType">
+      <div *ngIf="form.get('accountType')?.touched && form.get('accountType')?.invalid" class="text-danger">
+        Account type is required
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Balance</label>
+      <input type="number" class="form-control" formControlName="balance">
+      <div *ngIf="form.get('balance')?.touched && form.get('balance')?.invalid" class="text-danger">
+        Balance must be zero or positive
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Customer Id</label>
+      <input type="number" class="form-control" formControlName="customerId">
+      <div *ngIf="form.get('customerId')?.touched && form.get('customerId')?.invalid" class="text-danger">
+        Customer Id is required
+      </div>
+    </div>
+    <div class="col-12">
+      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
+      <a routerLink="/accounts" class="btn btn-secondary ms-2">Cancel</a>
+    </div>
+  </form>
+</div>

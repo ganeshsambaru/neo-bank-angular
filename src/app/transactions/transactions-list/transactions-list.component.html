@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Transactions</h3>
+      <a class="btn btn-primary" routerLink="/transactions/add">Add Transaction</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Account ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tx of transactions">
+          <td>{{ tx.id }}</td>
+          <td>{{ tx.transactionType }}</td>
+          <td>{{ tx.amount | number:'1.2-2' }}</td>
+          <td>{{ tx.transactionDate | date:'short' }}</td>
+          <td>{{ tx.accountId }}</td>
+          <td>
+            <a class="btn btn-sm btn-info me-2" [routerLink]="['/transactions/edit', tx.id]">Edit</a>
+            <button class="btn btn-sm btn-danger" (click)="delete(tx.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

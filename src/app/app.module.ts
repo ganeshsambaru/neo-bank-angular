@@ -8,6 +8,12 @@ import { CustomerFormComponent } from './customers/customer-form/customer-form.c
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
 import { CustomerEditComponent } from './customers/customer-edit/customer-edit.component';
 import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
+import { AccountListComponent } from './accounts/account-list/account-list.component';
+import { AccountFormComponent } from './accounts/account-form/account-form.component';
+import { AccountEditComponent } from './accounts/account-edit/account-edit.component';
+import { AccountDetailsComponent } from './accounts/account-details/account-details.component';
+import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
+import { TransactionsFormComponent } from './transactions/transactions-form/transactions-form.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +21,13 @@ import { CustomerDetailsComponent } from './customers/customer-details/customer-
     CustomerListComponent,
     CustomerFormComponent,
     CustomerEditComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    AccountListComponent,
+    AccountFormComponent,
+    AccountEditComponent,
+    AccountDetailsComponent,
+    TransactionsListComponent,
+    TransactionsFormComponent
   ],
   imports: [
     BrowserModule,

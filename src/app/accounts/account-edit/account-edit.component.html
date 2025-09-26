@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Edit Account</h2>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="row g-3" *ngIf="!loading">
+    <div class="col-md-6">
+      <label class="form-label">Account Number</label>
+      <input class="form-control" formControlName="accountNumber" />
+      <div *ngIf="f['accountNumber'].touched && f['accountNumber'].invalid" class="text-danger">
+        <span *ngIf="f['accountNumber'].errors?.['required']">Account number is required</span>
+        <span *ngIf="f['accountNumber'].errors?.['minlength']">Minimum 4 characters</span>
+        <span *ngIf="f['accountNumber'].errors?.['pattern']">Only letters, digits and hyphens allowed</span>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Account Type</label>
+      <input class="form-control" formControlName="accountType" />
+      <div *ngIf="f['accountType'].touched && f['accountType'].invalid" class="text-danger">
+        <span *ngIf="f['accountType'].errors?.['required']">Account type is required</span>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Balance</label>
+      <input type="number" class="form-control" formControlName="balance" />
+      <div *ngIf="f['balance'].touched && f['balance'].invalid" class="text-danger">
+        <span *ngIf="f['balance'].errors?.['required']">Balance is required</span>
+        <span *ngIf="f['balance'].errors?.['min']">Balance must be zero or positive</span>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Customer Id</label>
+      <input type="number" class="form-control" formControlName="customerId" />
+      <div *ngIf="f['customerId'].touched && f['customerId'].invalid" class="text-danger">
+        <span *ngIf="f['customerId'].errors?.['required']">Customer Id is required</span>
+        <span *ngIf="f['customerId'].errors?.['min']">Customer Id must be a positive number</span>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button type="submit" [disabled]="form.invalid" class="btn btn-success">Update</button>
+      <a routerLink="/accounts" class="btn btn-secondary ms-2">Cancel</a>
+    </div>
+  </form>
+</div>

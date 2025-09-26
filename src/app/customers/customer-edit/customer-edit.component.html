@@ -1,26 +1,48 @@
 <div class="container mt-4">
   <h2 class="mb-3">Edit Customer</h2>
+
   <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
   <form [formGroup]="form" (ngSubmit)="submit()" class="row g-3">
-    <!-- same fields as add -->
+    <!-- Full Name -->
     <div class="col-md-6">
       <label class="form-label">Full Name</label>
-      <input class="form-control" formControlName="fullName">
+      <input class="form-control" formControlName="fullName" />
+      <div *ngIf="form.get('fullName')?.touched && form.get('fullName')?.invalid" class="text-danger">
+        Full Name is required
+      </div>
     </div>
+
+    <!-- Email -->
     <div class="col-md-6">
       <label class="form-label">Email</label>
-      <input class="form-control" formControlName="email">
+      <input class="form-control" formControlName="email" />
+      <div *ngIf="form.get('email')?.touched && form.get('email')?.errors" class="text-danger">
+        <span *ngIf="form.get('email')?.errors?.['required']">Email is required</span>
+        <span *ngIf="form.get('email')?.errors?.['email']">Invalid email</span>
+      </div>
     </div>
+
+    <!-- Phone -->
     <div class="col-md-6">
       <label class="form-label">Phone</label>
-      <input class="form-control" formControlName="phone">
+      <input class="form-control" formControlName="phone" />
+      <div *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid" class="text-danger">
+        Phone is required
+      </div>
     </div>
+
+    <!-- Address -->
     <div class="col-md-6">
       <label class="form-label">Address</label>
-      <input class="form-control" formControlName="address">
+      <input class="form-control" formControlName="address" />
+      <div *ngIf="form.get('address')?.touched && form.get('address')?.invalid" class="text-danger">
+        Address is required
+      </div>
     </div>
+
+    <!-- Buttons -->
     <div class="col-12">
       <button type="submit" [disabled]="form.invalid" class="btn btn-success">Update</button>
       <a routerLink="/customers" class="btn btn-secondary ms-2">Cancel</a>

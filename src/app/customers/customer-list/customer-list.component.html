@@ -1,5 +1,8 @@
 <div class="container mt-4">
-  <h2 class="mb-3">Customers</h2>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Customers</h2>
+    <a routerLink="/customers/add" class="btn btn-primary">Add Customer</a>
+  </div>
 
   <!-- Alerts -->
   <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
@@ -22,12 +25,10 @@
         <td>{{ c.phone }}</td>
         <td>{{ c.address }}</td>
         <td>
-  <a [routerLink]="['/customers/details', c.id]" class="btn btn-sm btn-info me-2">Details</a>
-  <a [routerLink]="['/customers/edit', c.id]" class="btn btn-sm btn-warning me-2">Edit</a>
-  <button class="btn btn-sm btn-danger" (click)="deleteCustomer(c.id!)">Delete</button>
-</td>
-
-
+          <a [routerLink]="['/customers/details', c.id]" class="btn btn-sm btn-info me-2">Details</a>
+          <a [routerLink]="['/customers/edit', c.id]" class="btn btn-sm btn-warning me-2">Edit</a>
+          <button class="btn btn-sm btn-danger" (click)="deleteCustomer(c.id!)">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>
