@@ -10,6 +10,8 @@ import { AccountFormComponent } from './accounts/account-form/account-form.compo
 import { AccountListComponent } from './accounts/account-list/account-list.component';
 import { TransactionsFormComponent } from './transactions/transactions-form/transactions-form.component';
 import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
+import { TransactionsDetailsComponent } from './transactions/transactions-details/transactions-details.component';
+import { TransactionsEditComponent } from './transactions/transactions-edit/transactions-edit.component';
 
 const routes: Routes = [
   { path: 'customers', component: CustomerListComponent },
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: 'accounts/details/:id', component: AccountDetailsComponent },
   { path: 'transactions', component: TransactionsListComponent },
   { path: 'transactions/add', component: TransactionsFormComponent },
-  { path: 'transactions/edit/:id', component: TransactionsFormComponent }
+  { path: 'transactions/edit/:id', component: TransactionsEditComponent },
+{ path: 'transactions/details/:id', component: TransactionsDetailsComponent },
+
 
 
 ];

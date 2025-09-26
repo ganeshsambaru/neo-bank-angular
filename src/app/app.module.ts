@@ -14,6 +14,8 @@ import { AccountEditComponent } from './accounts/account-edit/account-edit.compo
 import { AccountDetailsComponent } from './accounts/account-details/account-details.component';
 import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
 import { TransactionsFormComponent } from './transactions/transactions-form/transactions-form.component';
+import { TransactionsEditComponent } from './transactions/transactions-edit/transactions-edit.component';
+import { TransactionsDetailsComponent } from './transactions/transactions-details/transactions-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { TransactionsFormComponent } from './transactions/transactions-form/tran
     AccountEditComponent,
     AccountDetailsComponent,
     TransactionsListComponent,
-    TransactionsFormComponent
+    TransactionsFormComponent,
+    TransactionsEditComponent,
+    TransactionsDetailsComponent
   ],
   imports: [
     BrowserModule,

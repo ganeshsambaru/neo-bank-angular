@@ -1,51 +1,89 @@
-<div class="card">
-  <div class="card-body">
-    <h3>{{ isEdit ? 'Edit Transaction' : 'Add Transaction' }}</h3>
+<div class="container mt-4">
+  <h2 class="mb-4">{{ isEdit ? 'Edit Transaction' : 'Add Transaction' }}</h2>
 
-    <form [formGroup]="form" (ngSubmit)="save()">
-      <div class="mb-3">
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="row">
+      <!-- Transaction Type -->
+      <div class="col-md-6 mb-3">
         <label class="form-label">Transaction Type</label>
         <select formControlName="transactionType" class="form-select">
           <option value="">-- Select --</option>
           <option value="Credit">Credit</option>
           <option value="Debit">Debit</option>
         </select>
-        <div *ngIf="form.controls['transactionType'].touched && form.controls['transactionType'].invalid" class="text-danger">
+        <div
+          *ngIf="
+            form.controls['transactionType'].touched &&
+            form.controls['transactionType'].invalid
+          "
+          class="text-danger"
+        >
           Transaction type is required
         </div>
       </div>
 
-      <div class="mb-3">
+      <!-- Amount -->
+      <div class="col-md-6 mb-3">
         <label class="form-label">Amount</label>
-        <input type="number" formControlName="amount" class="form-control" />
-        <div *ngIf="form.controls['amount'].touched && form.controls['amount'].invalid" class="text-danger">
+        <input
+          type="number"
+          formControlName="amount"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            form.controls['amount'].touched &&
+            form.controls['amount'].invalid
+          "
+          class="text-danger"
+        >
           Amount must be greater than 0
         </div>
       </div>
 
-      <div class="mb-3">
+      <!-- Transaction Date -->
+      <div class="col-md-6 mb-3">
         <label class="form-label">Transaction Date</label>
-        <input type="datetime-local" formControlName="transactionDate" class="form-control" />
-        <div *ngIf="form.controls['transactionDate'].touched && form.controls['transactionDate'].invalid" class="text-danger">
+        <input
+          type="datetime-local"
+          formControlName="transactionDate"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            form.controls['transactionDate'].touched &&
+            form.controls['transactionDate'].invalid
+          "
+          class="text-danger"
+        >
           Date is required
         </div>
       </div>
 
-      <div class="mb-3">
+      <!-- Account -->
+      <div class="col-md-6 mb-3">
         <label class="form-label">Account</label>
         <select formControlName="accountId" class="form-select">
           <option value="">-- Select Account --</option>
           <option *ngFor="let acc of accounts" [value]="acc.id">
-            {{ acc.accountNumber }} (Balance: {{ acc.balance | number:'1.2-2' }})
+            {{ acc.accountNumber }} (Balance: {{ acc.balance | number: '1.2-2' }})
           </option>
         </select>
-        <div *ngIf="form.controls['accountId'].touched && form.controls['accountId'].invalid" class="text-danger">
+        <div
+          *ngIf="
+            form.controls['accountId'].touched &&
+            form.controls['accountId'].invalid
+          "
+          class="text-danger"
+        >
           Account is required
         </div>
       </div>
+    </div>
 
-      <button type="submit" class="btn btn-success" [disabled]="form.invalid">Save</button>
-      <a routerLink="/transactions" class="btn btn-secondary ms-2">Cancel</a>
-    </form>
-  </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+      {{ isEdit ? 'Update' : 'Save' }}
+    </button>
+    <a routerLink="/transactions" class="btn btn-secondary ms-2">Cancel</a>
+  </form>
 </div>

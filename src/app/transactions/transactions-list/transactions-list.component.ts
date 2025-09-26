@@ -7,6 +7,7 @@ import { Transaction, TransactionService } from '../transaction.service';
 })
 export class TransactionsListComponent implements OnInit {
   transactions: Transaction[] = [];
+viewDetails: any;
 
   constructor(private txService: TransactionService) {}
 
@@ -27,3 +28,4 @@ export class TransactionsListComponent implements OnInit {
     }
   }
 }
+
