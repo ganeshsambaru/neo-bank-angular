@@ -16,6 +16,10 @@ import { TransactionsListComponent } from './transactions/transactions-list/tran
 import { TransactionsFormComponent } from './transactions/transactions-form/transactions-form.component';
 import { TransactionsEditComponent } from './transactions/transactions-edit/transactions-edit.component';
 import { TransactionsDetailsComponent } from './transactions/transactions-details/transactions-details.component';
+import { LoanListComponent } from './loans/loan-list/loan-list.component';
+import { LoanFormComponent } from './loans/loan-form/loan-form.component';
+import { LoanEditComponent } from './loans/loan-edit/loan-edit.component';
+import { LoanDetailsComponent } from './loans/loan-details/loan-details.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,12 @@ import { TransactionsDetailsComponent } from './transactions/transactions-detail
     TransactionsListComponent,
     TransactionsFormComponent,
     TransactionsEditComponent,
-    TransactionsDetailsComponent
+    TransactionsDetailsComponent,
+    LoanListComponent,
+    LoanFormComponent,
+    LoanEditComponent,
+    LoanDetailsComponent,
+
   ],
   imports: [
     BrowserModule,

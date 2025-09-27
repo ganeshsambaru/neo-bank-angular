@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h2>Add Loan</h2>
+  <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Amount</label>
+        <input formControlName="amount" type="number" class="form-control">
+        <div *ngIf="f['amount'].invalid && f['amount'].touched" class="text-danger">
+          Amount is required and must be positive.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Interest Rate (%)</label>
+        <input formControlName="interestRate" type="number" class="form-control">
+        <div *ngIf="f['interestRate'].invalid && f['interestRate'].touched" class="text-danger">
+          Interest rate is required (0–100%).
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Term (months)</label>
+        <input formControlName="termMonths" type="number" class="form-control">
+        <div *ngIf="f['termMonths'].invalid && f['termMonths'].touched" class="text-danger">
+          Term is required and must be at least 1 month.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Customer ID</label>
+        <input formControlName="customerId" type="number" class="form-control">
+        <div *ngIf="f['customerId'].invalid && f['customerId'].touched" class="text-danger">
+          Customer ID is required and must be positive.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Start Date</label>
+        <input formControlName="startDate" type="datetime-local" class="form-control">
+        <div *ngIf="f['startDate'].invalid && f['startDate'].touched" class="text-danger">
+          Start Date is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>End Date (optional)</label>
+        <input formControlName="endDate" type="datetime-local" class="form-control">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="loanForm.invalid">Save</button>
+    <a routerLink="/loans" class="btn btn-secondary ms-2">Cancel</a>
+  </form>
+</div>

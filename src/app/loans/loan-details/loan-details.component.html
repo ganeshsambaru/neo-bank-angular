@@ -1,0 +1,37 @@
+<div class="container mt-4" *ngIf="loan">
+  <h2>Loan Details</h2>
+
+  <div class="card p-4">
+    <h4 class="mb-3">Loan :{{ loan.id }}</h4>
+
+    <p>
+      <strong>Amount:</strong>
+      {{ loan.amount | currency }}
+    </p>
+    <p>
+      <strong>Interest Rate:</strong>
+      {{ loan.interestRate }}%
+    </p>
+    <p>
+      <strong>Term:</strong>
+      {{ loan.termMonths }} months
+    </p>
+    <p>
+      <strong>Start Date:</strong>
+      {{ loan.startDate | date }}
+    </p>
+    <p *ngIf="loan.endDate">
+      <strong>End Date:</strong>
+      {{ loan.endDate | date }}
+    </p>
+    <p>
+      <strong>Customer ID:</strong>
+      {{ loan.customerId }}
+    </p>
+
+    <div class="mt-3">
+      <button class="btn btn-secondary me-2" (click)="goBack()">Back</button>
+      <button class="btn btn-warning" (click)="editLoan()">Edit</button>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,10 @@ import { TransactionsFormComponent } from './transactions/transactions-form/tran
 import { TransactionsListComponent } from './transactions/transactions-list/transactions-list.component';
 import { TransactionsDetailsComponent } from './transactions/transactions-details/transactions-details.component';
 import { TransactionsEditComponent } from './transactions/transactions-edit/transactions-edit.component';
+import { LoanDetailsComponent } from './loans/loan-details/loan-details.component';
+import { LoanEditComponent } from './loans/loan-edit/loan-edit.component';
+import { LoanFormComponent } from './loans/loan-form/loan-form.component';
+import { LoanListComponent } from './loans/loan-list/loan-list.component';
 
 const routes: Routes = [
   { path: 'customers', component: CustomerListComponent },
@@ -27,6 +31,13 @@ const routes: Routes = [
   { path: 'transactions/add', component: TransactionsFormComponent },
   { path: 'transactions/edit/:id', component: TransactionsEditComponent },
 { path: 'transactions/details/:id', component: TransactionsDetailsComponent },
+{ path: 'loans', component: LoanListComponent },
+  { path: 'loans/add', component: LoanFormComponent },
+  { path: 'loans/edit/:id', component: LoanEditComponent },
+  { path: 'loans/:id', component: LoanDetailsComponent },
+  {path: 'loans/details/:id', component: LoanDetailsComponent}
+
+
 
 
 
