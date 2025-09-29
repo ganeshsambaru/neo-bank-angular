@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,6 +20,9 @@ import { LoanListComponent } from './loans/loan-list/loan-list.component';
 import { LoanFormComponent } from './loans/loan-form/loan-form.component';
 import { LoanEditComponent } from './loans/loan-edit/loan-edit.component';
 import { LoanDetailsComponent } from './loans/loan-details/loan-details.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,8 @@ import { LoanDetailsComponent } from './loans/loan-details/loan-details.componen
     LoanFormComponent,
     LoanEditComponent,
     LoanDetailsComponent,
+  LoginComponent,
+  RegisterComponent,
 
   ],
   imports: [
@@ -49,6 +54,15 @@ import { LoanDetailsComponent } from './loans/loan-details/loan-details.componen
     FormsModule,        // if you use template forms
     ReactiveFormsModule // if you use reactive forms
   ],
-  bootstrap: [AppComponent]
+   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
+bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

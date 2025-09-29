@@ -16,36 +16,45 @@ import { LoanDetailsComponent } from './loans/loan-details/loan-details.componen
 import { LoanEditComponent } from './loans/loan-edit/loan-edit.component';
 import { LoanFormComponent } from './loans/loan-form/loan-form.component';
 import { LoanListComponent } from './loans/loan-list/loan-list.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'customers', component: CustomerListComponent },
-  { path: 'add-customer', component: CustomerFormComponent },
+  // ✅ default route: if logged in you’ll be taken to /customers (AuthGuard will kick unauthenticated users to /login)
   { path: '', redirectTo: '/customers', pathMatch: 'full' },
-  { path: 'customers/edit/:id', component: CustomerEditComponent },
-  { path: 'customers/details/:id', component: CustomerDetailsComponent },
-  { path: 'accounts', component: AccountListComponent },
-  { path: 'accounts/add', component: AccountFormComponent },
-  { path: 'accounts/edit/:id', component: AccountEditComponent },
-  { path: 'accounts/details/:id', component: AccountDetailsComponent },
-  { path: 'transactions', component: TransactionsListComponent },
-  { path: 'transactions/add', component: TransactionsFormComponent },
-  { path: 'transactions/edit/:id', component: TransactionsEditComponent },
-{ path: 'transactions/details/:id', component: TransactionsDetailsComponent },
-{ path: 'loans', component: LoanListComponent },
-  { path: 'loans/add', component: LoanFormComponent },
-  { path: 'loans/edit/:id', component: LoanEditComponent },
-  { path: 'loans/:id', component: LoanDetailsComponent },
-  {path: 'loans/details/:id', component: LoanDetailsComponent}
 
+  // protected routes:
+  { path: 'customers', component: CustomerListComponent, canActivate: [AuthGuard] },
+  { path: 'customers/add', component: CustomerFormComponent, canActivate: [AuthGuard] },
+  { path: 'customers/edit/:id', component: CustomerEditComponent, canActivate: [AuthGuard] },
+  { path: 'customers/details/:id', component: CustomerDetailsComponent, canActivate: [AuthGuard] },
 
+  { path: 'accounts', component: AccountListComponent, canActivate: [AuthGuard] },
+  { path: 'accounts/add', component: AccountFormComponent, canActivate: [AuthGuard] },
+  { path: 'accounts/edit/:id', component: AccountEditComponent, canActivate: [AuthGuard] },
+  { path: 'accounts/details/:id', component: AccountDetailsComponent, canActivate: [AuthGuard] },
 
+  { path: 'transactions', component: TransactionsListComponent, canActivate: [AuthGuard] },
+  { path: 'transactions/add', component: TransactionsFormComponent, canActivate: [AuthGuard] },
+  { path: 'transactions/edit/:id', component: TransactionsEditComponent, canActivate: [AuthGuard] },
+  { path: 'transactions/details/:id', component: TransactionsDetailsComponent, canActivate: [AuthGuard] },
 
+  { path: 'loans', component: LoanListComponent, canActivate: [AuthGuard] },
+  { path: 'loans/add', component: LoanFormComponent, canActivate: [AuthGuard] },
+  { path: 'loans/edit/:id', component: LoanEditComponent, canActivate: [AuthGuard] },
+  { path: 'loans/details/:id', component: LoanDetailsComponent, canActivate: [AuthGuard] },
 
+  // public routes:
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+
+  // optional: catch-all 404 redirect
+  { path: '**', redirectTo: '/customers' }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
