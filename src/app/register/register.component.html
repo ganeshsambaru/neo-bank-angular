@@ -3,58 +3,83 @@
     <div class="card shadow-lg p-4 position-relative" style="width: 400px; z-index: 2;">
       <h3 class="text-center mb-4">Register</h3>
 
-      <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+      <form (ngSubmit)="onRegister()" #registerForm="ngForm" novalidate>
+        <!-- Full Name -->
         <div class="mb-3">
           <input
             type="text"
             class="form-control"
             name="fullName"
             [(ngModel)]="user.fullName"
+            #fullName="ngModel"
             placeholder="Full Name"
             required />
+          <div *ngIf="fullName.invalid && fullName.touched" class="text-danger small">
+            Full name is required
+          </div>
         </div>
 
+        <!-- Email -->
         <div class="mb-3">
           <input
             type="email"
             class="form-control"
             name="email"
             [(ngModel)]="user.email"
+            #email="ngModel"
             placeholder="Email"
-            required />
+            required email />
+          <div *ngIf="email.invalid && email.touched" class="text-danger small">
+            Enter a valid email
+          </div>
         </div>
 
+        <!-- Phone -->
         <div class="mb-3">
           <input
             type="text"
             class="form-control"
             name="phone"
             [(ngModel)]="user.phone"
+            #phone="ngModel"
             placeholder="Phone"
-            required />
+            required pattern="^[0-9]{10}$" />
+          <div *ngIf="phone.invalid && phone.touched" class="text-danger small">
+            Enter a 10-digit phone number
+          </div>
         </div>
 
+        <!-- Password -->
         <div class="mb-3">
           <input
             type="password"
             class="form-control"
             name="password"
             [(ngModel)]="user.password"
+            #password="ngModel"
             placeholder="Password"
-            required />
+            required minlength="6" />
+          <div *ngIf="password.invalid && password.touched" class="text-danger small">
+            Password must be at least 6 characters
+          </div>
         </div>
 
+        <!-- Role -->
         <div class="mb-3">
           <select
             class="form-select"
             name="role"
             [(ngModel)]="user.role"
+            #role="ngModel"
             required>
-            <option value="" disabled selected>Select Role</option>
+            <option value="" disabled>Select Role</option>
             <option value="Customer">Customer</option>
             <option value="Manager">Manager</option>
             <option value="BankStaff">Bank Staff</option>
           </select>
+          <div *ngIf="role.invalid && role.touched" class="text-danger small">
+            Please select a role
+          </div>
         </div>
 
         <button

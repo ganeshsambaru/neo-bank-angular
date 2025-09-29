@@ -2,25 +2,35 @@
   <div class="card shadow-lg p-4" style="width: 400px;">
     <h3 class="text-center mb-4">Login</h3>
 
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+      <!-- Email -->
       <div class="mb-3">
         <input
           type="email"
           class="form-control"
           [(ngModel)]="email"
           name="email"
+          #emailCtrl="ngModel"
           placeholder="Email"
-          required />
+          required email />
+        <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="text-danger small">
+          Enter a valid email
+        </div>
       </div>
 
+      <!-- Password -->
       <div class="mb-3">
         <input
           type="password"
           class="form-control"
           [(ngModel)]="password"
           name="password"
+          #passwordCtrl="ngModel"
           placeholder="Password"
-          required />
+          required minlength="6" />
+        <div *ngIf="passwordCtrl.invalid && passwordCtrl.touched" class="text-danger small">
+          Password is required (min 6 chars)
+        </div>
       </div>
 
       <button

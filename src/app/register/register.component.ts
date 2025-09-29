@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  // ✅ match backend DTO
   user = {
     fullName: '',
     email: '',
@@ -20,7 +19,10 @@ export class RegisterComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
   onRegister() {
-    // send the whole object directly
+    if (!this.user.fullName || !this.user.email || !this.user.password || !this.user.role) {
+      return; // prevent invalid submission
+    }
+
     this.auth.register(this.user).subscribe({
       next: () => {
         alert('Registration successful! Please log in.');

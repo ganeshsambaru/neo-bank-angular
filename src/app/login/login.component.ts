@@ -14,9 +14,12 @@ export class LoginComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
   onSubmit() {
+    if (!this.email || !this.password) {
+      return; // prevent invalid submission
+    }
+
     this.auth.login({ email: this.email, password: this.password }).subscribe({
       next: () => {
-        // ✅ navigate to dashboard or customers page
         this.router.navigate(['/customers']);
       },
       error: (err) => {
